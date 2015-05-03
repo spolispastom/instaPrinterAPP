@@ -1,0 +1,11 @@
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPrint\bin\x86\Release\InstagramPrint.exe.config
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPrint\obj\x86\Release\InstagramPrint.csprojResolveAssemblyReference.cache
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPrint\obj\x86\Release\CastomPrinterControl.baml
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPrint\obj\x86\Release\ImageEditorControl.baml
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPrint\obj\x86\Release\CastomPrinterControl.g.cs
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPrint\obj\x86\Release\ImageEditorControl.g.cs
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPrint\obj\x86\Release\MainWindow.g.cs
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPrint\obj\x86\Release\App.g.cs
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPrint\obj\x86\Release\GeneratedInternalTypeHelper.g.cs
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPrint\obj\x86\Release\InstagramPrint_MarkupCompile.cache
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPrint\obj\x86\Release\InstagramPrint_MarkupCompile.lref

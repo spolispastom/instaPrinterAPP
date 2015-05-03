@@ -1,0 +1,9 @@
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPatterns\bin\Debug\InstagramPatterns.dll
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPatterns\bin\Debug\InstagramPatterns.pdb
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPatterns\obj\Debug\InstagramPatterns.dll
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPatterns\obj\Debug\InstagramPatterns.pdb
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPatterns\obj\Debug\InstagramPatterns.Properties.Resources.resources
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPatterns\obj\Debug\InstagramPatterns.csproj.GenerateResource.Cache
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPatterns\bin\Debug\Newtonsoft.Json.dll
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPatterns\bin\Debug\Newtonsoft.Json.xml
+C:\Users\sPolispastom\Desktop\insta-printer\InstagramPatterns\obj\Debug\InstagramPatterns.csprojResolveAssemblyReference.cache

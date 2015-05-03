@@ -1,0 +1,78 @@
+﻿<Window x:Class="InstagramPrint.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:InstagramPrint"
+        Title="InstaPrinter" Height="400" Width="1200" MinHeight="200" MinWidth="550" 
+        WindowState="Maximized" FontSize="14"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}" Closed="Window_Closed" Icon="Копия-Instagram-Logo-light.ico"
+        >
+    <Window.Resources>
+        <local:HeightValueConverter x:Key="HeightValueConverter"/>
+    </Window.Resources>
+    <Grid x:Name="grid">
+        <ListBox HorizontalAlignment="Left" VerticalAlignment="Stretch" BorderThickness="0">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Background>
+                            <ImageBrush ImageSource="Images/Background.jpg"/>
+                        </StackPanel.Background>
+                    </StackPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+            <local:ImageEditorControl x:Name="MainImageEditor"  Height="{Binding ActualHeight, ConverterParameter=24, Converter={StaticResource HeightValueConverter}, ElementName=grid, Mode=OneWay}"/>
+
+            <ListBoxItem VerticalAlignment="Stretch"/>
+
+            <ListBoxItem>
+                <StackPanel Orientation="Vertical"  Height="{Binding ActualHeight, ConverterParameter=24, Converter={StaticResource HeightValueConverter}, ElementName=grid, Mode=OneWay}" Width="200">
+                    <TextBlock  FontSize="24" Margin="0,0,0,10"><Run Text="Настройки"/></TextBlock>
+
+                    <TabControl Width="200" Height="60" x:Name="ContentTypeTabBox">
+                        <TabItem Header="Tag">
+                            <StackPanel Orientation="Horizontal" Width="200">
+                                <TextBlock Margin="0,5"><Run Text="#"/></TextBlock>
+                                <local:AutoFilteredComboBox x:Name="TagBox" Text="instasamara"  Width="185" Background="#CCF0F0F0" IsEditable="True" />
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem Header="User">
+                            <StackPanel Orientation="Horizontal" Width="200">
+                                <TextBlock Margin="0,5"><Run Text="@"/></TextBlock>
+                                <TextBox x:Name="UserBox" Text="instaprintersamara"  Width="180" Background="#CCF0F0F0" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem Header="Shortcode">
+                            <StackPanel Orientation="Horizontal" Width="200">
+                                <TextBlock Margin="0,5"><Run Text="p/"/></TextBlock>
+                                <TextBox x:Name="ShortcodeBox" Text="wWrMhFM84M"  Width="180" Background="#CCF0F0F0" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                            </StackPanel>
+                        </TabItem>
+                    </TabControl>
+                   
+                    <Separator/>
+                    <Button x:Name="StartLoedButton" Click="StartLoed_Click" HorizontalAlignment="Stretch" Content="Начать загрузку изображений"/>
+                    <Button x:Name="StopLoedButton" IsEnabled="False" Click="StopLoed_Click" HorizontalAlignment="Stretch" Content="Остановит загрузку изображений"/>
+                    <Separator/>
+                    <DatePicker x:Name="EndDataTimePicker" SelectedDateFormat="Long" SelectedDate="{Binding DisplayDate, ElementName=EndDataTimePicker, Mode=OneWayToSource}"/>
+                    <CheckBox x:Name="IsFastDowlandChackBox" IsChecked="True" Content="Быстрая загрузка"/>
+
+                    <Separator/>
+                    <Button x:Name="StartPrintButton" Click="StartPrint_Click" HorizontalAlignment="Stretch" Content="Начать печать"/>
+                    <Button x:Name="StopPrintButton" IsEnabled="False" Click="StopPrint_Click" HorizontalAlignment="Stretch" Content="Остановит печать"/>
+                    <local:CastomPrinterControl x:Name="Printer"/>
+                    <Separator/>
+                    <CheckBox x:Name="SaveCheckBox" 
+                              Checked="SaveCheckBox_Checked" 
+                              Unchecked="SaveCheckBox_Unchecked" Content="Сохранять фото"/>
+                    <Button x:Name="SetSaveFolderButton" Click="SetSaveFolderButton_Click" Content="Выбрать папку" />
+                </StackPanel>
+            </ListBoxItem>
+
+            <ListBoxItem>
+                <local:PrintQueueControl x:Name="PrintControl"  ImageSelected="PrintControl_ImageSelected"
+                                         Height="{Binding ActualHeight, ConverterParameter=25, Converter={StaticResource HeightValueConverter}, ElementName=grid, Mode=OneWay}"/>
+            </ListBoxItem>
+        </ListBox>
+    </Grid>
+</Window>

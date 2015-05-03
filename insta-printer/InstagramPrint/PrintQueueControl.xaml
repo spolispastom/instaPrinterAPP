@@ -1,0 +1,119 @@
+﻿<UserControl x:Class="InstagramPrint.PrintQueueControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:InstagramPrint"
+             xmlns:instaApi="clr-namespace:InstagramPatterns.InstagramApi;assembly=InstagramPatterns"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="900"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <UserControl.Resources>
+        <instaApi:DataImageValueConverter x:Key="DataImageValueConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" FontSize="24">Очередь печати</TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" FontSize="24" x:Name="ImpCountBox" HorizontalAlignment="Right" Margin="0,0,50,0"></TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" FontSize="24">Напечатанные фото</TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" FontSize="24" x:Name="PrintedCountBox" HorizontalAlignment="Right" Margin="0,0,20,0"></TextBlock>
+        <TextBlock Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" FontSize="24">Ненапечатанные фото</TextBlock>
+        <TextBlock Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" FontSize="24" x:Name="CanseledCountBox" HorizontalAlignment="Right" ></TextBlock>
+
+        <TextBox x:Name="SearchTextBox" Grid.Row="1" Grid.ColumnSpan="5" TextChanged="SearchTextBox_TextChanged" ></TextBox>
+        
+        <ListView x:Name="ImputImages"  Grid.Column="0" Grid.Row="2" ItemsSource="{Binding ImportQueueSourse}" 
+                 Background="{x:Null}" BorderThickness="0" BorderBrush="{x:Null}" SelectionChanged="Images_Selected"
+                 >
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Background="{x:Null}" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+    
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="White" Width="270" Height="64">
+                        <Grid.ColumnDefinitions >
+                            <ColumnDefinition Width="64"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="60"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Image Width="64" Height="64" Source="{Binding Photo, Converter={StaticResource DataImageValueConverter}}"  Grid.Column="0" Grid.RowSpan="3"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding UserName}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5, 0, 5, 0" Foreground="Black"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding StringCreatedTime}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5, 0, 5, 0" Foreground="Black"/>
+                        <Button Grid.Column="2" DataContext="{Binding}" Grid.RowSpan="3" Margin="5" VerticalAlignment="Center" BorderBrush="Black" Foreground="Black" Click="ImputImagesItemButtonClick">X</Button>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView x:Name="PrintedImages" Grid.Column="1" Grid.Row="2"  ItemsSource="{Binding PrintedQueueSourse}"
+                 Background="{x:Null}" BorderThickness="0" SelectionChanged="Images_Selected">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical" HorizontalAlignment="Stretch"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="White" Width="270" Height="64">
+                        <Grid.ColumnDefinitions >
+                            <ColumnDefinition Width="64"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="60"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Image Width="64" Height="64" Source="{Binding Photo, Converter={StaticResource DataImageValueConverter}}"  Grid.Column="0" Grid.RowSpan="3"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding UserName}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5, 0, 5, 0" Foreground="Black"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding StringCreatedTime}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5, 0, 5, 0" Foreground="Black"/>
+                        <Button Grid.Column="2" Grid.RowSpan="3" Margin="5" VerticalAlignment="Center" BorderBrush="Black" Foreground="Black" Click="PrintedQueueItemButtonClick">X</Button>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView x:Name="CanseledImages" Grid.Column="2" Grid.Row="2"  ItemsSource="{Binding CanseledQueueSourse}" 
+                 Background="{x:Null}" BorderThickness="0" SelectionChanged="Images_Selected">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical" HorizontalAlignment="Stretch"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="White" Width="270" Height="64">
+                        <Grid.ColumnDefinitions >
+                            <ColumnDefinition Width="64"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="60"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Image Width="64" Height="64" Source="{Binding Photo, Converter={StaticResource DataImageValueConverter}}"  Grid.Column="0" Grid.RowSpan="3"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding UserName}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5, 0, 5, 0" Foreground="Black"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding StringCreatedTime}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5, 0, 5, 0" Foreground="Black"/>
+                        <Button Grid.Column="2" Grid.RowSpan="3" Margin="5" VerticalAlignment="Center" BorderBrush="Black" Foreground="Black" Click="CanseledQueueItemButtonClick">X</Button>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</UserControl>
